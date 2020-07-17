@@ -1,5 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Place, Image
+from django.http import HttpResponse
+import json
 
 
 def index(request):
@@ -33,4 +35,17 @@ def index(request):
 def endpoint(request, id):
     place = get_object_or_404(Place, id=id)
 
-    return render(request, 'endpoint.html', {'place': place})
+    images_url = [image.image.url for image in place.images.all()]
+
+    place_json = {
+        "title": place.title,
+        "imgs": images_url,
+        "description_short": place.description_short,
+        "description_long": place.description_long,
+        "coordinates": {
+            "lat": place.lat,
+            "lng": place.lon,
+        }
+    }
+
+    return HttpResponse(json.dumps(place_json, indent=4, ensure_ascii=False), content_type="application/json")
