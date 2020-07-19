@@ -11,6 +11,9 @@ class Place (models.Model):
 
     def __str__(self):
         return self.title
+    
+    class Meta: 
+        verbose_name_plural = 'Места'
 
 
 class Image (models.Model):
@@ -21,3 +24,6 @@ class Image (models.Model):
     def __str__(self):
         view = f'{str(self.position)} {self.place.title}'
         return view
+    
+    class Meta: 
+        verbose_name_plural = 'Фотографии'
