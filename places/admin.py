@@ -14,7 +14,7 @@ class ImageInline(SortableInlineAdminMixin, admin.TabularInline):
         pass
     print (traceback.print_exc)
 
-    fields = ('image', 'preview_image')
+    fields = ('image', 'preview_image', 'position')
 
     def preview_image(self, instance):
         return format_html(
@@ -23,6 +23,7 @@ class ImageInline(SortableInlineAdminMixin, admin.TabularInline):
 
 class PlaceAdmin(admin.ModelAdmin):
     list_display = ['title']
+
     inlines = [
         ImageInline,
     ]
