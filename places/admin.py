@@ -3,8 +3,9 @@ from .models import Place, Image
 from django.utils.safestring import mark_safe
 import traceback
 from django.utils.html import format_html
+from adminsortable2.admin import SortableInlineAdminMixin
 
-class ImageInline(admin.TabularInline):
+class ImageInline(SortableInlineAdminMixin, admin.TabularInline):
     model = Image
 
     try:
@@ -13,7 +14,7 @@ class ImageInline(admin.TabularInline):
         pass
     print (traceback.print_exc)
 
-    fields = ('image', 'preview_image', 'position')
+    fields = ('image', 'preview_image')
 
     def preview_image(self, instance):
         return format_html(

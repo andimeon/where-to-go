@@ -25,5 +25,6 @@ class Image (models.Model):
         view = f'{str(self.position)} {self.place.title}'
         return view
     
-    class Meta: 
+    class Meta:
+        ordering = ['position'] 
         verbose_name_plural = 'Фотографии'
