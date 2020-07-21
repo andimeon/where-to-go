@@ -18,7 +18,7 @@ def index(request):
                     "coordinates": [place.lon, place.lat],
             },
                 "properties": {
-                    "title": place.point_title,
+                    "title": place.title,
                     "placeId": place.id,
                     "detailsUrl": reverse('endpoint', args=(place.id,))
                 }
