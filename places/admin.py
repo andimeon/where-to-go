@@ -5,6 +5,10 @@ import traceback
 from django.utils.html import format_html
 from adminsortable2.admin import SortableInlineAdminMixin
 
+class ImageAdmin(admin.ModelAdmin):
+    list_filter = ['place']
+
+
 class ImageInline(SortableInlineAdminMixin, admin.TabularInline):
     model = Image
 
@@ -30,4 +34,4 @@ class PlaceAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Place, PlaceAdmin)
-admin.site.register(Image)
+admin.site.register(Image, ImageAdmin)
