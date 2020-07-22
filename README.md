@@ -6,15 +6,15 @@
 
 Сайт, показывающий интересные места на карте, с описанием этих мест и фотографиями. Данный сайт вы можете посмотреть по [ссылке](http://moscowplace.pythonanywhere.com). Чтобы посмотреть описание места, необходимо нажать на красную мерцающую точку.
 
-![screenshot](screenshots/screenshot_1.png)
+![screenshot](screenshots/screenshot.jpg)
 
 Сайт оптимизирован для просмотра на различных устройствах.
 
-[скрин со смартфона]
+![mobile](screenshots/mob_screenshot.jpg)
 
-Наполнение сайта происзодит через специальную [панель администратора].
+Наполнение сайта происзодит через специальную [панель администратора](http://moscowplace.pythonanywhere.com/admin/).
 
-[скрин со панели]
+![admin](screenshots/admin_screenshot.jpg)
 
 ## Как запустить на локальном компьютере
 
@@ -31,7 +31,18 @@ pip install -r requirements.txt
 Запустите веб-сервер командой:
 
 ```bash
+python manage.py migrate
 python manage.py runserver 8080
+```
+
+## Заполнение базы данных
+
+В данном проекте был разразбортан скрипт по заполнению базы данных. Все данные необходимо оформлять в виде ссылки на [json файл](https://raw.githubusercontent.com/devmanorg/where-to-go-places/master/places/Антикафе%20Bizone.json). Скрипт автоматически загружает данные и фотографии.
+
+Запуск скрипта осуществляется из командной строки:
+
+```bash
+python manage.py load_place ссылка
 ```
 
 ## Используемые библиотеки
