@@ -20,7 +20,7 @@ class Place (models.Model):
 class Image (models.Model):
     image = models.ImageField('Картинка')
     position = models.IntegerField('Позиция', db_index=True)
-    place = models.ForeignKey('Place', on_delete=models.CASCADE, related_name='images')
+    place = models.ForeignKey('Place', on_delete=models.CASCADE, related_name='images', verbose_name='Место на карте')
 
     def __str__(self):
         view = f'{str(self.position)} {self.place.title}'
