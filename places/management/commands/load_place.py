@@ -34,16 +34,11 @@ class Command(BaseCommand):
             lon=coordinates['lng']
         )
 
-        try:
-            place = Place.objects.get(title=title)
-        except ObjectDoesNotExist:
-            print('Объект не найден')
-
-        for count, img_url in enumerate(imgs_url):
+        for count, img_url in enumerate(imgs_url, start=1):
             response = requests.get(img_url)
             response.raise_for_status()
 
-            position = (count+1)
+            position = (count)
             image_place = Image.objects.get_or_create(position=position, place=place)[0]
 
             img_byte = BytesIO(response.content)
