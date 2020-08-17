@@ -23,7 +23,7 @@ class Image (models.Model):
     place = models.ForeignKey('Place', on_delete=models.CASCADE, related_name='images', verbose_name='Место на карте')
 
     def __str__(self):
-        view = f'{str(self.position)} {self.place.title}'
+        view = f'{self.position} {self.place.title}'
         return view
     
     class Meta:
