@@ -21,7 +21,7 @@ class Command(BaseCommand):
         response = response.json()
 
         title = response['title']
-        imgs_url = response['imgs']
+        imgs_urls = response['imgs']
         description_short = response['description_short']
         description_long = response['description_long']
         coordinates = response['coordinates']
@@ -34,7 +34,7 @@ class Command(BaseCommand):
             lon=coordinates['lng']
         )
 
-        for count, img_url in enumerate(imgs_url, start=1):
+        for count, img_url in enumerate(imgs_urls, start=1):
             response = requests.get(img_url)
             response.raise_for_status()
 
