@@ -41,8 +41,8 @@ def endpoint(request, id):
     place_json = {
         "title": place.title,
         "imgs": images_url,
-        "description_short": place.description_short,
-        "description_long": place.description_long,
+        "short_description": place.short_description,
+        "long_description": place.long_description,
         "coordinates": {
             "lat": place.lat,
             "lng": place.lon,
