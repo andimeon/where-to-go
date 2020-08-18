@@ -6,7 +6,7 @@ from django.utils.html import format_html
 from adminsortable2.admin import SortableInlineAdminMixin
 
 class ImageAdmin(admin.ModelAdmin):
-    list_filter = ['place']
+    raw_id_fields = ['place']
 
 
 class ImageInline(SortableInlineAdminMixin, admin.TabularInline):
@@ -16,7 +16,6 @@ class ImageInline(SortableInlineAdminMixin, admin.TabularInline):
         readonly_fields = ['preview_image']
     except Exception:
         pass
-    print (traceback.print_exc)
 
     fields = ('image', 'preview_image', 'position')
 
