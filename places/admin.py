@@ -20,9 +20,7 @@ class ImageInline(SortableInlineAdminMixin, admin.TabularInline):
     fields = ('image', 'preview_image', 'position')
 
     def preview_image(self, instance):
-        return format_html(
-            mark_safe('<img src="{url}" width="225" height="150" />'.format(
-            url = instance.image.url)))
+        return format_html('<img src="{0}" width="225" height="150" />', instance.image.url)
 
 class PlaceAdmin(admin.ModelAdmin):
     list_display = ['title']
