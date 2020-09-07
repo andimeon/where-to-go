@@ -33,18 +33,19 @@ class Command(BaseCommand):
             lat=coordinates['lat'],
             lon=coordinates['lng']
         )
+        
+        if created:
+            for count, img_url in enumerate(imgs_urls, start=1):
+                response = requests.get(img_url)
+                response.raise_for_status()
 
-        for count, img_url in enumerate(imgs_urls, start=1):
-            response = requests.get(img_url)
-            response.raise_for_status()
+                position = (count)
+                image_place, created = Image.objects.get_or_create(position=position, place=place)[0]
 
-            position = (count)
-            image_place, created = Image.objects.get_or_create(position=position, place=place)[0]
-
-            img_byte = BytesIO(response.content)
-            filename = os.path.basename(img_url)
-            
-            image_place.image.save(filename, files.File(img_byte), save=True)
+                img_byte = BytesIO(response.content)
+                filename = os.path.basename(img_url)
+                
+                image_place.image.save(filename, files.File(img_byte), save=True)
 
         
 
