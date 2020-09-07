@@ -26,7 +26,7 @@ class Command(BaseCommand):
         description_long = response['description_long']
         coordinates = response['coordinates']
 
-        place = Place.objects.get_or_create(
+        place, created = Place.objects.get_or_create(
             title=title,
             description_short=description_short,
             description_long=description_long,
@@ -39,7 +39,7 @@ class Command(BaseCommand):
             response.raise_for_status()
 
             position = (count)
-            image_place = Image.objects.get_or_create(position=position, place=place)[0]
+            image_place, created = Image.objects.get_or_create(position=position, place=place)[0]
 
             img_byte = BytesIO(response.content)
             filename = os.path.basename(img_url)
