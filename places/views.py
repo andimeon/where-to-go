@@ -36,11 +36,11 @@ def index(request):
 def endpoint(request, id):
     place = get_object_or_404(Place, id=id)
 
-    images_url = [image.image.url for image in place.images.all()]
+    images_urls = [image.image.url for image in place.images.all()]
 
     place_json = {
         "title": place.title,
-        "imgs": images_url,
+        "imgs": images_urls,
         "short_description": place.short_description,
         "long_description": place.long_description,
         "coordinates": {
